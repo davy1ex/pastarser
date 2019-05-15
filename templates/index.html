@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>pastarser</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for ("static", filename="css/index.css") }} ">
+</head>
+<body>	
+	<div class="post_wrapper">
+		{% for post in posts %}
+			<div class="post">
+				{{ post.text }}
+				{% if "attachments" in post.keys() %}
+					{% for attachment in post.attachments %}
+				    	{% if attachment.type == "photo" %}
+				    		<div class="img">
+				    			<img src="{{ attachment.photo.sizes[-1].url }}"></a>
+								<br>
+				    		</div>						
+						{% endif %}
+					{% endfor %}
+				{% endif %}
+				
+				<br>
+				<br>
+			</div>
+		{% endfor %}
+	</div>
+</body>
+</html>
