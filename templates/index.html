@@ -5,24 +5,31 @@
 	<link rel="stylesheet" type="text/css" href="{{ url_for ("static", filename="css/index.css") }} ">
 </head>
 <body>	
-	<div class="post_wrapper">
+	<div class="posts_wrapper">
 		{% for post in posts %}
-			<div class="post">
-				{{ post.text }}
-				{% if "attachments" in post.keys() %}
-					{% for attachment in post.attachments %}
-				    	{% if attachment.type == "photo" %}
-				    		<div class="img">
-				    			<img src="{{ attachment.photo.sizes[-1].url }}"></a>
-								<br>
-				    		</div>						
+			{% if post.text | length > 0 and post.marked_as_ads == 0 %}
+				<post class="post_wrapper">
+					<div class="post">
+						{% if post.text | length > 180 %}
+							{{ post.text[:180]}}
+							<br>
+							<a href="">&gt;&gt;&gt;</a>
+						{% else %}
+							{{ post.text }}
 						{% endif %}
-					{% endfor %}
-				{% endif %}
+						{% if "attachments" in post.keys() %}
+							{% for attachment in post.attachments %}
+						    	{% if attachment.type == "photo" %}
+						    		<div class="img">
+						    			<img src="{{ attachment.photo.sizes[-1].url }}"></a>
+						    		</div>						
+								{% endif %}
+							{% endfor %}
+						{% endif %}
+					</div>
+				</post>
 				
-				<br>
-				<br>
-			</div>
+			{% endif %}
 		{% endfor %}
 	</div>
 </body>

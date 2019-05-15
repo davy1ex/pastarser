@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    posts = vk.wall.get(owner_id="415754216")["items"]
+    posts = vk.wall.get(owner_id="-26406986", count=10)["items"]
     # for post in posts:/
         # return str(post["id"])
     return render_template("index.html", posts=posts)
