@@ -1,22 +1,15 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>pastarser</title>
+{% extends "base.html" %}
+
+{% block css %}
 	<link rel="stylesheet" type="text/css" href="{{ url_for ("static", filename="css/index.css") }} ">
-</head>
-<body>	
+{% endblock %}
+
+{% block content %}
 	<div class="posts_wrapper">
 		{% for post in posts %}
 			{% if post.text | length > 0 and post.marked_as_ads == 0 %}
-				<post class="post_wrapper">
+				<div class="post_wrapper">
 					<div class="post">
-						{% if post.text | length > 180 %}
-							{{ post.text[:180]}}
-							<br>
-							<a href="">&gt;&gt;&gt;</a>
-						{% else %}
-							{{ post.text }}
-						{% endif %}
 						{% if "attachments" in post.keys() %}
 							{% for attachment in post.attachments %}
 						    	{% if attachment.type == "photo" %}
@@ -26,11 +19,18 @@
 								{% endif %}
 							{% endfor %}
 						{% endif %}
+						
+						{% if post.text | length > 180 %}
+							{{ post.text[:180]}}
+							<br>
+							<a href="{{ url_for("post", id=post.id) }}">&gt;&gt;&gt;</a>
+						{% else %}
+							{{ post.text }}
+						{% endif %}
 					</div>
-				</post>
+				</div>
 				
 			{% endif %}
 		{% endfor %}
 	</div>
-</body>
-</html>
+{% endblock %}
