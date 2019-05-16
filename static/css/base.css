@@ -1,0 +1,30 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.content_wrapper {
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+header {
+    border-bottom: 1px solid grey;
+    height: 35px;
+}
+
+header li {
+    list-style: none;
+    padding: 10px
+}
+
+header li a {
+    line-height: 25px;
+    text-decoration: none;
+    color: black;
+}
+
+header li a:hover {
+    color: gray;
+}

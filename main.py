@@ -3,12 +3,20 @@ import vk_api
 
 app = Flask(__name__)
 
+group_id = "-26406986"
+
+
 @app.route("/")
 def index():
-    posts = vk.wall.get(owner_id="-26406986", count=10)["items"]
-    # for post in posts:/
-        # return str(post["id"])
+    posts = vk.wall.get(owner_id=group_id, count=10)["items"]
     return render_template("index.html", posts=posts)
+
+
+@app.route("/post_<id>")
+def post(id):
+    post_id = group_id + "_" + id
+    post = vk.wall.getById(posts=post_id)[0]
+    return render_template("post.html", post=post)
 
 
 if __name__ == "__main__":
