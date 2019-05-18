@@ -35,7 +35,7 @@ ul li {
 	display: inline;
 }
 
-ul li a {
+a {
 	text-decoration: none;
 	color: black;
 }
@@ -47,4 +47,27 @@ ul li a:hover {
 .likes {
 	padding-right: 5px;
 	text-align: right;
+}
+
+.pages_nav {
+	border: 1px dotted gray;
+	/* width: auto; */
+	display: table;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	margin-bottom: 25px;
+}
+
+.pages_nav li {
+	padding-right: 1px;
+	padding-left: 1px;
+}
+
+.pages_nav a {
+	color: black;
+}
+
+.pages_nav a:hover {
+	color: gray;
 }

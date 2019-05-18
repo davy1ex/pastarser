@@ -6,19 +6,24 @@ app = Flask(__name__)
 group_id = "-26406986"
 
 
-@app.route("/")
-def index():
-    posts = vk.wall.get(owner_id=group_id, count=30)["items"]
+@app.route("/page_<page>")
+def index(page):
+    page = int(page)
+    offset = page // 9
+    if page % 9 != 0:
+        offset += 1
+    posts = vk.wall.get(owner_id=group_id, count=9, offset=page*9)["items"]
 
-    return render_template("index.html", posts=posts)
+    return render_template("index.html", posts=posts, page=page)
 
 
-@app.route("/sort_by_relevance")
-def sort_by_relevance():
-    posts = vk.wall.get(owner_id=group_id, count=30)["items"]
+@app.route("/sort_by_relevance_<page>")
+def sort_by_relevance(page):
+    page = int(page)
+    posts = vk.wall.get(owner_id=group_id, count=9, offset=page*9)["items"]
     posts = sorted(posts, key=lambda post: post["likes"]["count"])[::-1]
     
-    return render_template("index.html", posts=posts)
+    return render_template("index.html", posts=posts, page=page)
 
 
 @app.route("/post_<id>")

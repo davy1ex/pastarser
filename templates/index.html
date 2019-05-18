@@ -8,10 +8,10 @@
 	<div class="menu">
 		<ul>
 			<li>
-				<a href="/sort_by_relevance">sort by relevance</a>
+				<a href="{{ url_for("sort_by_relevance", page=page) }}">sort by relevance</a>
 			</li>
 			<li>
-				<a href="/">sort by new</a>
+				<a href="{{ url_for("index", page=page) }}">sort by new</a>
 			</li>
 		</ul>
 	</div>
@@ -41,9 +41,23 @@
 							likes: {{ post.likes.count }}
 						</div>
 					</div>
-				</div>
-				
+				</div>				
 			{% endif %}
 		{% endfor %}
+	</div>
+	<div class="pages_nav">		
+		<ul>
+			{% if page != 0 %}
+				<li>
+					<a href="{{ url_for("index", page=0) }}">0</a> ...
+				</li>
+			{% endif %}
+
+			{% for n_page in range(9) %}
+				<li>
+					<a href="{{ url_for("index", page=page+n_page) }}">{{ page + n_page }}</a>
+				</li>
+			{% endfor %}
+		</ul>
 	</div>
 {% endblock %}
