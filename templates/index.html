@@ -5,9 +5,19 @@
 {% endblock %}
 
 {% block content %}
+	<div class="menu">
+		<ul>
+			<li>
+				<a href="/sort_by_relevance">sort by relevance</a>
+			</li>
+			<li>
+				<a href="/">sort by new</a>
+			</li>
+		</ul>
+	</div>
 	<div class="posts_wrapper">
 		{% for post in posts %}
-			{% if post.text | length > 0 and post.marked_as_ads == 0 %}
+			{% if post.text | length > 300 and post.marked_as_ads == 0 %}
 				<div class="post_wrapper">
 					<div class="post">
 						{% if "attachments" in post.keys() %}
@@ -21,12 +31,15 @@
 						{% endif %}
 						
 						{% if post.text | length > 180 %}
-							{{ post.text[:180]}}
-							<br>
+							{{ post.text[:180]}}... 
 							<a href="{{ url_for("post", id=post.id) }}">&gt;&gt;&gt;</a>
 						{% else %}
 							{{ post.text }}
 						{% endif %}
+						<br>
+						<div class="likes">
+							likes: {{ post.likes.count }}
+						</div>
 					</div>
 				</div>
 				

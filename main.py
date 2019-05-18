@@ -8,7 +8,16 @@ group_id = "-26406986"
 
 @app.route("/")
 def index():
-    posts = vk.wall.get(owner_id=group_id, count=10)["items"]
+    posts = vk.wall.get(owner_id=group_id, count=30)["items"]
+
+    return render_template("index.html", posts=posts)
+
+
+@app.route("/sort_by_relevance")
+def sort_by_relevance():
+    posts = vk.wall.get(owner_id=group_id, count=30)["items"]
+    posts = sorted(posts, key=lambda post: post["likes"]["count"])[::-1]
+    
     return render_template("index.html", posts=posts)
 
 
@@ -31,5 +40,6 @@ if __name__ == "__main__":
         exit()
 
     vk = vk_session.get_api()
-
+    
     app.run(debug=True)
+ 
