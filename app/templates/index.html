@@ -17,7 +17,7 @@
 	</div>
 	<div class="posts_wrapper">
 		{% for post in posts %}
-			{% if post.text | length > 300 and post.marked_as_ads == 0 %}
+			{% if post.text | length > 300 and post.marked_as_ads == 0 and post.is_pinned != 1%}
 				<div class="post_wrapper">
 					<div class="post">
 						{% if "attachments" in post.keys() %}
@@ -30,15 +30,25 @@
 							{% endfor %}
 						{% endif %}
 						
-						{% if post.text | length > 180 %}
-							{{ post.text[:180]}}... 
-							<a href="{{ url_for("post", id=post.id) }}">&gt;&gt;&gt;</a>
-						{% else %}
-							{{ post.text }}
-						{% endif %}
+						<div class="text">
+							{% if post.text | length > 180 %}
+								{{ post.text[:180]}}... 
+								<a href="{{ url_for("post", id=post.id) }}">&gt;&gt;&gt;</a>
+							{% else %}
+								{{ post.text }}
+							{% endif %}
+						</div>
+						
 						<br>
-						<div class="likes">
-							likes: {{ post.likes.count }}
+						
+						<div class="post_info">
+							<div class="date">
+								{{ post.date|datetime }}	
+							</div>
+	
+							<div class="likes">
+								likes: {{ post.likes.count }}
+							</div>
 						</div>
 					</div>
 				</div>				
@@ -55,7 +65,7 @@
 
 			{% for n_page in range(9) %}
 				<li>
-					<a href="{{ url_for("index", page=page+n_page) }}">{{ page + n_page }}</a>
+					<a href="{{ url_for("page", page=page+n_page) }}">{{ page + n_page }}</a>
 				</li>
 			{% endfor %}
 		</ul>

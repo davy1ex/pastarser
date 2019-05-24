@@ -1,7 +1,14 @@
+from datetime import datetime
 from flask import render_template, redirect, url_for
 from app import app, vk
 
 group_id = "-26406986"
+
+
+def format_datetime(date):
+    return datetime.utcfromtimestamp(int(date)).strftime("%d %b %H:%M:%S")
+app.jinja_env.filters['datetime'] = format_datetime
+
 
 @app.route("/")
 def index():
