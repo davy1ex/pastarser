@@ -1,6 +1,8 @@
 from flask import Flask, render_template
 import vk_api
 
+
+
 app = Flask(__name__)
 
 group_id = "-26406986"

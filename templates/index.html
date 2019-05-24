@@ -5,6 +5,14 @@
 {% endblock %}
 
 {% block content %}
+	<script>
+		if (!Notification.permission == "granted") {
+			Notification.requestPermission();
+		}
+		else {
+			var notification = new Notification("хуй");
+		}
+	</script>
 	<div class="menu">
 		<ul>
 			<li>
