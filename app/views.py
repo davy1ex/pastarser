@@ -2,7 +2,7 @@ from datetime import datetime
 from flask import render_template, redirect, url_for
 from app import app, vk
 
-group_id = "-26406986"
+group_id = "-92157416"
 
 
 def format_datetime(date):
