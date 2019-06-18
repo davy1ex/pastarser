@@ -1,11 +1,39 @@
-from flask import Flask, render_template
-import vk_api
+from threading import Thread
+from time import sleep
 
+from flask import Flask, render_template, redirect, url_for
+from flask_socketio import SocketIO
+import vk_api
+from vk_settings import login, password
 
 
 app = Flask(__name__)
+app.config["DEBUG"] = True
+socketio = SocketIO(app, async_mode="threading")
 
-group_id = "-26406986"
+group_id = "-92157416"
+
+
+def check_new_posts(old_list_posts):
+    while True:
+        new_posts = vk.wall.get(owner_id=int(group_id))["items"]
+        # print(len(old_list_posts), len(new_posts))
+        # print(posts)
+        
+        if int(old_list_posts[0]["id"]) != int(new_posts[0]["id"]):
+            old_list_posts = new_posts
+            print("\nНОВЫЙ ПОСТ\n")
+            
+            socketio.emit("check_posts", namespace="/posts")
+        # socketio.emit("check_posts", namespace="/posts")
+        # socketio.emit("test", namespace="/posts")
+
+        sleep(15000)
+
+
+@app.route("/")
+def redirect_to_main_page():
+    return redirect(url_for("index", page=1))
 
 
 @app.route("/page_<page>")
@@ -37,7 +65,7 @@ def post(id):
 
 if __name__ == "__main__":
     # auth vk
-    login, password = '89879191850', 'guburo42'
+    
     vk_session = vk_api.VkApi(login, password)
 
     try:
@@ -48,5 +76,8 @@ if __name__ == "__main__":
 
     vk = vk_session.get_api()
     
-    app.run(debug=True)
+    posts = vk.wall.get(owner_id=int(group_id))["items"]
+    
+    socketio.start_background_task(check_new_posts, posts)
+    socketio.run(app)
  
