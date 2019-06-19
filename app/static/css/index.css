@@ -1,4 +1,7 @@
 .post_wrapper {
+	width: 50%;
+	margin-left: auto;
+	margin-right: auto;
 	margin-bottom: 30px;
 	border: 1px solid gray;
 	width: 60%;
@@ -54,9 +57,28 @@ ul li a:hover {
 	color: gray;
 }
 
+.text {
+	margin-top: 5px;
+}
+
+.post_info {
+	margin-top: 5px;
+}
+
+.post_info div {
+	display: inline-block;
+}
+
 .likes {
 	padding-right: 5px;
 	text-align: right;
+	width: 48%;
+}
+
+.date {
+	padding-left: 5px;
+	text-align: left;
+	width: 48%;
 }
 
 .pages_nav {

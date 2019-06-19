@@ -1,17 +1,11 @@
 from threading import Thread
 from time import sleep
-
 from flask import Flask, render_template, redirect, url_for
 from flask_socketio import SocketIO
 import vk_api
-from vk_settings import login, password
 
-
-app = Flask(__name__)
-app.config["DEBUG"] = True
-socketio = SocketIO(app, async_mode="threading")
-
-group_id = "-92157416"
+from app import app, views, vk, group_id, socketio
+from vk_settings import Config
 
 
 def check_new_posts(old_list_posts):
@@ -31,53 +25,44 @@ def check_new_posts(old_list_posts):
         sleep(15000)
 
 
-@app.route("/")
-def redirect_to_main_page():
-    return redirect(url_for("index", page=1))
+# @app.route("/")
+# def redirect_to_main_page():
+#     return redirect(url_for("index", page=1))
 
 
-@app.route("/page_<page>")
-def index(page):
-    page = int(page)
-    offset = page // 9
-    if page % 9 != 0:
-        offset += 1
-    posts = vk.wall.get(owner_id=group_id, count=9, offset=page*9)["items"]
+# @app.route("/page_<page>")
+# def index(page):
+#     page = int(page)
+#     offset = page // 9
+#     if page % 9 != 0:
+#         offset += 1
+#     posts = vk.wall.get(owner_id=group_id, count=9, offset=page*9)["items"]
 
-    return render_template("index.html", posts=posts, page=page)
+#     return render_template("index.html", posts=posts, page=page)
 
 
-@app.route("/sort_by_relevance_<page>")
-def sort_by_relevance(page):
-    page = int(page)
-    posts = vk.wall.get(owner_id=group_id, count=9, offset=page*9)["items"]
-    posts = sorted(posts, key=lambda post: post["likes"]["count"])[::-1]
+# @app.route("/sort_by_relevance_<page>")
+# def sort_by_relevance(page):
+#     page = int(page)
+#     posts = vk.wall.get(owner_id=group_id, count=9, offset=page*9)["items"]
+#     posts = sorted(posts, key=lambda post: post["likes"]["count"])[::-1]
     
-    return render_template("index.html", posts=posts, page=page)
+#     return render_template("index.html", posts=posts, page=page)
 
 
-@app.route("/post_<id>")
-def post(id):
-    post_id = group_id + "_" + id
-    post = vk.wall.getById(posts=post_id)[0]
-    return render_template("post.html", post=post)
+# @app.route("/post_<id>")
+# def post(id):
+#     post_id = group_id + "_" + id
+#     post = vk.wall.getById(posts=post_id)[0]
+#     return render_template("post.html", post=post)
 
 
 if __name__ == "__main__":
-    # auth vk
-    
-    vk_session = vk_api.VkApi(login, password)
-
-    try:
-        vk_session.auth()
-    except vk_api.AuthError as error_msg:
-        print(error_msg)
-        exit()
-
-    vk = vk_session.get_api()
+    #vk_session = vk_api.VkApi(login, password)
     
     posts = vk.wall.get(owner_id=int(group_id))["items"]
-    
+
     socketio.start_background_task(check_new_posts, posts)
     socketio.run(app)
+
  
