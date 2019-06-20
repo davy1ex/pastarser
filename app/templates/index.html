@@ -38,11 +38,7 @@
 				</form>
 			</div>
 			<div class="sort">
-				<ul>
-					<!-- <li>
-						
-					</li> -->
-					
+				<ul>					
 					<li>
 						<a href="{{ url_for("sort_by_relevance", page=page) }}">sort by relevance</a>
 					</li>
@@ -57,11 +53,11 @@
 	</div>
 
 	<div class="posts_wrapper">
-		{% if count %}
+		<!-- {% if count %}
 			<div class="count_info">
 				Найдено {{ count }} паст. Показываю только первые {{ posts | length}}.
 			</div>
-		{% endif %}
+		{% endif %} -->
 
 		{% if posts | length > 0 %}
 			{% for post in posts %}

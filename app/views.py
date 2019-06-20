@@ -25,7 +25,7 @@ def index(page):
             count = posts["count"]
             
             if count == 0:
-                return redirect(url_for("page", page=0))
+                return redirect(url_for("redirect_to_main_page"))
             
             return render_template("index.html", posts=posts["items"], page=0, form=form, count=count, search=True)
             
@@ -38,8 +38,9 @@ def sort_by_relevance(page):
     page = int(page)
     posts = vk.wall.get(owner_id=group_id, count=9, offset=page*9)["items"]
     posts = sorted(posts, key=lambda post: post["likes"]["count"])[::-1]
+    form = SearchPosts()
 
-    return render_template("index.html", posts=posts, page=page)
+    return render_template("index.html", posts=posts, page=page, form=form)
 
 
 @app.route("/post_<id>")
