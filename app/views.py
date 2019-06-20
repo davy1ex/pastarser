@@ -48,12 +48,11 @@ def post(id):
     post_id = group_id + "_" + id
     print(vk.wall.getById(posts=post_id))
     post = vk.wall.getById(posts=post_id)[0]
+    
     return render_template("post.html", post=post)
 
 
-# group_id = "-92157416"
-
-
+# штука, которая переводит дату в читабельный вид
 def format_datetime(date):
     return datetime.utcfromtimestamp(int(date)).strftime("%d %b %H:%M:%S")
 

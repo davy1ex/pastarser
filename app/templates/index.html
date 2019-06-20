@@ -53,12 +53,6 @@
 	</div>
 
 	<div class="posts_wrapper">
-		<!-- {% if count %}
-			<div class="count_info">
-				Найдено {{ count }} паст. Показываю только первые {{ posts | length}}.
-			</div>
-		{% endif %} -->
-
 		{% if posts | length > 0 %}
 			{% for post in posts %}
 				{% if post.text | length > 300 and post.marked_as_ads == 0 and post.is_pinned != 1 %}
@@ -78,6 +72,7 @@
 								{% if post.text | length > 180 %}
 									{{ post.text[:180]}}... 
 									<a href="{{ url_for("post", id=post.id) }}"> <strong>&gt;&gt;&gt;</strong></a>
+								
 								{% else %}
 									{{ post.text }}
 								{% endif %}
@@ -123,7 +118,6 @@
 						<li> <a href="">...</a> </li>
 					{% endif %}
 				{% endif %}
-
 
 				{% for n_page in range(9) %}
 					{% if page == n_page + page  %}
