@@ -1,42 +1,11 @@
-.post_wrapper {
-	width: 50%;
-	margin-left: auto;
-	margin-right: auto;
-	margin-bottom: 30px;
-	border: 1px solid gray;
-	width: 60%;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-.post {
-	/* display: inline; */
-	margin-bottom: 10px;
-	padding: 5px;
-	/* width: 60%; */
-	margin-left: auto;
-	margin-right: auto;
-	/* height: 95%; */
-}
-
-img {
-	max-width: 100%;
-	max-height: 90%;
-	display: inline-block;
-}
-
-.img img {
-	margin-left: auto;
-	margin-right: auto;
-}
-
+/* меню */
 .menu {
 	text-align: right;
 	height: 25px;
 }
 
 .menu ul {
-	line-height: 25px;
+	height: 50 px;
 }
 
 .menu li:not(:first-child) {
@@ -57,33 +26,47 @@ ul li a:hover {
 	color: gray;
 }
 
-.text {
-	margin-top: 5px;
+
+/* посты */
+.posts_wrapper {
+	margin-top: 25px;
 }
 
-.post_info {
-	margin-top: 5px;
+.post_wrapper {
+	margin-bottom: 30px;
+	border: 1px solid gray;
+	width: 60%;
+	margin-left: auto;
+	margin-right: auto;
 }
 
-.post_info div {
+.post {
+	margin-bottom: 10px;
+	padding: 5px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+img {
+	max-width: 100%;
+	max-height: 90%;
 	display: inline-block;
+}
+
+.img img {
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .likes {
 	padding-right: 5px;
 	text-align: right;
-	width: 48%;
 }
 
-.date {
-	padding-left: 5px;
-	text-align: left;
-	width: 48%;
-}
 
+/* навигация */
 .pages_nav {
 	border: 1px dotted gray;
-	/* width: auto; */
 	display: table;
 	margin-left: auto;
 	margin-right: auto;
@@ -105,6 +88,5 @@ ul li a:hover {
 }
 
 .pages_nav .this_page li a{
-	/* color: #4A76A8; */
 	font-weight: bold;
 }
