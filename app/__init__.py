@@ -11,7 +11,6 @@ socketio = SocketIO(app, async_mode="threading")
 
 
 # auth vk
-
 vk_session = vk_api.VkApi(Vk_settings.login, Vk_settings.password)
 
 try:
