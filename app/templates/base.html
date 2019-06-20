@@ -12,14 +12,16 @@
     </head>
 
     <body>
+        <header>
+            <ul>
+                <li>
+                    <a href="{{ url_for("index", page=0) }}">HOME</a>
+                </li>
+            </ul>
+        </header>
+
         <div class="content_wrapper">
-            <header>
-                <ul>
-                    <li>
-                        <a href="{{ url_for("index", page=0) }}">HOME</a>
-                    </li>
-                </ul>
-            </header>
+            
 
             <div class="content">
                 {% block content %}

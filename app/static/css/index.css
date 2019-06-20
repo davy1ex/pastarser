@@ -2,23 +2,23 @@
 .menu {
 	/* text-align: center; */
 	line-height: 30px;
-	display: inline-block;
-	width: 100%;
-	/* width:  */
+	width: 60%;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .search {
 	float: left;
-	text-align: center;
-	width: 50%;
-	line-height: 30px;
+	text-align: left;
+	width: 40%;
+	line-height: 23px;
 }
 
 .sort {
 	/* float: right; */
-	text-align: center;
+	text-align: right;
 	margin-left: auto;
-	width: 50%;
+	width: 40%;
 	line-height: 30px;
 }
 
@@ -49,10 +49,9 @@ ul li a:hover {
 }
 
 
-/* посты */
-.posts_wrapper {
-	/* margin-top: 10px; */
-}
+/* .posts_wrapper {
+	margin-top: 100px;
+} */
 
 .post_wrapper {
 	margin-bottom: 30px;
@@ -76,6 +75,7 @@ img {
 }
 
 .img img {
+	display: block;
 	margin-left: auto;
 	margin-right: auto;
 }

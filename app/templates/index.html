@@ -29,30 +29,31 @@
 {% endblock %}
 
 {% block content %}
-	<div class="menu">
-		<div class="search">
-			<form method="POST">
-				{{ form.hidden_tag() }}
-				{{form.text_field()}} {{form.submit()}}
-			</form>
-		</div>
-		<div class="sort">
-			<ul>
-				<!-- <li>
+	<div class="menu_wrapper">
+		<div class="menu">
+			<div class="search">
+				<form method="POST">
+					{{ form.hidden_tag() }}
+					{{form.text_field()}} {{form.submit()}}
+				</form>
+			</div>
+			<div class="sort">
+				<ul>
+					<!-- <li>
+						
+					</li> -->
 					
-				</li> -->
-				
-				<li>
-					<a href="{{ url_for("sort_by_relevance", page=page) }}">sort by relevance</a>
-				</li>
-				
-				<li>
-					<a href="{{ url_for("index", page=page) }}">sort by new</a>
-				</li>
-				
-			</ul>
-		</div>
-		
+					<li>
+						<a href="{{ url_for("sort_by_relevance", page=page) }}">sort by relevance</a>
+					</li>
+					
+					<li>
+						<a href="{{ url_for("index", page=page) }}">sort by new</a>
+					</li>
+					
+				</ul>
+			</div>
+		</div>	
 	</div>
 
 	<div class="posts_wrapper">
