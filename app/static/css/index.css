@@ -1,11 +1,33 @@
 /* меню */
 .menu {
-	text-align: right;
-	height: 25px;
+	/* text-align: center; */
+	line-height: 30px;
+	display: inline-block;
+	width: 100%;
+	/* width:  */
+}
+
+.search {
+	float: left;
+	text-align: center;
+	width: 50%;
+	line-height: 30px;
+}
+
+.sort {
+	/* float: right; */
+	text-align: center;
+	margin-left: auto;
+	width: 50%;
+	line-height: 30px;
 }
 
 .menu ul {
-	height: 50 px;
+	/* margin-left: auto; */
+	
+	/* text-align: right; */
+	
+	line-height: 25px;
 }
 
 .menu li:not(:first-child) {
@@ -29,7 +51,7 @@ ul li a:hover {
 
 /* посты */
 .posts_wrapper {
-	margin-top: 25px;
+	/* margin-top: 10px; */
 }
 
 .post_wrapper {
