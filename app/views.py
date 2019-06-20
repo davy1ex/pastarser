@@ -21,7 +21,7 @@ def index(page):
 
     if form.validate_on_submit():
         if form.text_field.data != "":
-            posts = vk.wall.search(owner_id=group_id, query=form.text_field.data, count=9)
+            posts = vk.wall.search(owner_id=group_id, query=form.text_field.data, count=9, owners_only=1)
             count = posts["count"]
             
             if count == 0:
@@ -46,6 +46,7 @@ def sort_by_relevance(page):
 @app.route("/post_<id>")
 def post(id):
     post_id = group_id + "_" + id
+    print(vk.wall.getById(posts=post_id))
     post = vk.wall.getById(posts=post_id)[0]
     return render_template("post.html", post=post)
 

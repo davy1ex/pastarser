@@ -1,0 +1,28 @@
+.post_wrapper {
+    margin: 10px 0;
+    border: 1px solid gray;
+}
+
+.photo {
+    padding: 5px;
+}
+
+.text {
+    padding: 5px;
+    width: auto;
+    white-space: pre-wrap;
+}
+
+.date, .likes {
+    color: gray;
+}
+
+.date {
+	text-align: left;
+	padding-left: 5px;
+}
+
+.likes {
+	text-align: left;
+	padding-left: 5px;
+}
